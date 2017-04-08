@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Table Converter</title>
+        <meta charset="utf-8" />
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'converter/css/bootstrap.min.css' %}" type = "text/css"/>
+
+        <script src="{% static 'converter/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'converter/jquery-3.1.1.js' %}"></script>
+        <script src="{% static 'converter/js/FileSaver.js' %}"></script>
+        <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+        
+        <style type="text/css">
+            html,
+            body {
+              height:100%
+            }
+        </style>
+
+        <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+
+        <script type="text/javascript">
+        $("#upload").click(function(){
+            $("#inputfile").click();
+        });  
+        function upload(){  
+            var file = document.getElementById("inputfile").files[0];  
+            var reader = new FileReader();  
+            reader.readAsText(file);  
+            reader.onload = function(f){  
+                var inputfile = document.getElementById("input_table");  
+                inputfile.innerHTML=this.result;  
+            }  
+        } 
+        </script>
+
+        <script type="text/javascript">
+        function download(){
+            var output_value = document.getElementById("output_table").value;
+            var blob = new Blob([output_value], {type: "charset=utf-8"});
+            saveAs(blob,"output");
+        }
+        </script>
+
+        <meta http-equiv=content-type content="text/html;charset=GBK">
+    </head>
+
+    <body class="body" style="background-color:#f6f6f6">
+        <div class="container-fluid" style="min-height:95%; ">
+            <div>
+                <br>
+                <center>
+                <h3>Converting XML/JSON/Relational Tables</h3>
+                </center>
+            </div><hr>
+
+            <div class="row">
+                {% csrf_token %}
+                    <div class="col-sm-6">
+                        <div>               
+                            <br>
+                            <label>Please choose a XML/JSON file：</label>
+                        </div>
+                        <div>
+                            <label class="btn btn-primary btn-file">Browse<input type="file" id="inputfile" name="file_input" style="display: none;" onchange="upload()">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6" style="float:right;">
+                        <br><br><br>
+                        <div style="float: right">
+                            <label>
+                            <input type="button" class="btn btn-primary" id="download" onclick="download()" value="Download Output" />
+                            </label>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="row">
+                <form action="/convert-post" method="post">
+                    {% csrf_token %}
+                    <div class="col-sm-5">
+                        <br><br>
+                        <div class="form-group">
+                            <label for="input_table">Input table:</label>
+                            <textarea class="form-control" rows="13" id="input_table" name="input"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <br><br><br><br><br>
+                        <div class="radio" style="margin-left: 35px;">
+                          <label><input type="radio" name="optradio" value="XML-JSON">XML-JSON</label>
+                        </div>
+                        <div class="radio" style="margin-left: 35px;">
+                          <label><input type="radio" name="optradio" value="JSON-XML">JSON-XML</label>
+                        </div>
+                        <div class="radio" style="margin-left: 35px;">
+                          <label><input type="radio" name="optradio" value="XML-Relational">XML-Relational</label>
+                        </div>
+                        <div class="radio" style="margin-left: 35px;">
+                          <label><input type="radio" name="optradio" value="Relational-XML">Relational-XML</label>
+                        </div>
+                        <div class="radio" style="margin-left: 35px;">
+                          <label><input type="radio" name="optradio" value="JSON-Relational">JSON-Relational</label>
+                        </div>
+                        <div class="radio" style="margin-left: 35px;">
+                          <label><input type="radio" name="optradio" value="Relational-JSON">Relational-JSON</label>
+                        </div>
+                        <br>
+                        <center><button class="btn btn-primary" type="submit" value="Convert">Convert</button></center>
+                    </div>  
+                </form>
+
+                    <div class="col-sm-5">
+                        <br><br>
+                        <div class="form-group">
+                            <label for="output_table">Output table:</label>
+                            <textarea class="form-control" rows="13" id="output_table" name="output">{{output}}</textarea>
+                        </div>
+                    </div>
+
+            <div class="row">
+                <form action="/showtables" method="post">
+                    {% csrf_token %}
+                    <div class="col-sm-12">
+                        <center><button class="btn btn-primary" type="submit" value="Show Tables">Show Tables</button></center>
+                    </div>  
+                </form>
+            </div>
+            <br><br>
+        </div>
+
+        <footer>
+            <!-- <div class="row" style='margin-left:0px'>
+                <form action="/manual" method="post">
+                {% csrf_token %}
+                <button class="btn btn-primary" type="submit" value="Manual">Manual</button>
+            </div> -->
+            <div class="container-fluid" style='margin-left:0px'>
+                <p><a href="manual" target="blank">User Manual</a></p>
+                <p><a href="#" target="blank">Group 11</a></p>
+                <p><a href="#" target="blank">LU YIFAN, YU YINCHENG, SUN KAIXUAN, YANG YAJING</a></p>
+            </div>
+        </footer>   
+    </body>
+
+</html>
+

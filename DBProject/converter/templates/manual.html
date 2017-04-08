@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Table Converter</title>
+        <meta charset="utf-8" />
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'converter/css/bootstrap.min.css' %}" type = "text/css"/>
+
+        <script src="{% static 'converter/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'converter/jquery-3.1.1.js' %}"></script>
+        <script src="{% static 'converter/js/FileSaver.js' %}"></script>
+        <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+        
+        <style type="text/css">
+            html,
+            body {
+              height:100%
+            }
+        </style>
+
+        <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+
+        <meta http-equiv=content-type content="text/html;charset=GBK">
+    </head>
+
+    <body class="body" style="background-color:#f6f6f6">
+        <div class="container-fluid" style="min-height:95%; ">
+            <div>
+                <br>
+                <center>
+                <h3>User Manual</h3>
+                </center>
+            </div><hr>
+
+            <div class="row">
+                <br>
+                
+                <p class="muted">This website and functions inside are developed by student from NUS for CD4221 project:</p>
+                <p class="muted">Yang Yajing, Lu Yifan, Yu Yingchen, Sun Kaixuan</p>
+                <p class="muted">We acknowledge the help from MIT students for the function of translating between XML and JSON </p>
+                <p class="muted">1.0	GENERAL INFORMATION
+                <p class="muted">1.1	System Overview
+                <p class="muted">•	Major functions performed by the system: to perform inter-translation between different types of database, which includes XML JSON, and Relational Table built in postgreSQL system. </p>
+                <p class="muted">•	System category:</p>
+                <p class="muted">    −	Major application: Translate, show table functions, upload and download function </p>
+                <p class="muted">•	General description:</p>
+                <p class="muted">System environment or special conditions: The application is developed using python and tables are created in the postgreSQL system, therefore it achieves the best result to have postgreSQL implemented and database created in the system used to run the application</p>
+                <p class="muted">2.0	USING THE SYSTEM </p>
+                <p class="muted">2.1    Translation input</p>
+                <p class="muted">Provide the original file you need to translate, upload into the website by the ‘upload’ button. Alternatively, it is easy to copy and paste what we want to translate in a string format.</p>
+                <p class="muted">As for the relational tables, we can either provide the SQL DDL codes or just create the tables in postgreSQL. </p>
+                <p class="muted">2.2	Archive output </p>
+                <p class="muted">To get the output file, you can download directly the corresponding output by clicking the ‘download’ button. Additionally, for JSON and XML, the output file will be displayed on the output box directly. </p>
+                <p class="muted">For Relational tables, the SQL DDL codes will be shown, and if you want to view the table, you can do it by clicking the ‘Show Table’ button. </p>
+                <p class="muted">If you have the postgreSQL installed, you can also get the result table in the database.</p>
+            </div>
+            <br><br>
+        </div>
+
+        <div class="row">
+            <form action="/back">
+                {% csrf_token %}
+                <div class="col-sm-12">
+                    <center><button class="btn btn-primary" type="submit" value="Back">Back</button></center>
+                </div>  
+            </form>
+        </div>
+
+        <footer>
+            <div class="container-fluid" style='margin-left:0px'>
+                <p><a href="#" target="blank">Group 11</a></p>
+                <p><a href="#" target="blank">LU YIFAN, YU YINCHENG, SUN KAIXUAN, YANG YAJING</a></p>
+            </div>
+        </footer>   
+    </body>
+
+</html>
+

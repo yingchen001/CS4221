@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Table Converter</title>
+        <meta charset="utf-8" />
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'converter/css/bootstrap.min.css' %}" type = "text/css"/>
+
+        <script src="{% static 'converter/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'converter/jquery-3.1.1.js' %}"></script>
+        <script src="{% static 'converter/js/FileSaver.js' %}"></script>
+        <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+        
+        <style type="text/css">
+            html,
+            body {
+              height:100%
+            }
+        </style>
+
+        <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+
+        <meta http-equiv=content-type content="text/html;charset=GBK">
+    </head>
+
+    <body>
+        <br><br><br><br><br>
+        <p align="center"><font size="4">Sorry, you chose the wrong option or your XML/JSON file is too advanced.</p>
+        <p align="center"><font size="4">We are unable to convert it. We are very sorry about this.</p>
+        <br><br>
+        <div class="row">
+            <form action="/back">
+                {% csrf_token %}
+                <div class="col-sm-12">
+                    <center><button class="btn btn-primary" type="submit" value="Back">Back</button></center>
+                </div>  
+            </form>
+        </div>
+    </body>
+</html>
+
+<!-- margin-bottom:200px; -->
+<!-- height: 30px; width: 300px; -->
